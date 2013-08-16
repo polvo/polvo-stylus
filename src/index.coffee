@@ -13,7 +13,7 @@ module.exports = new class Index
   ext: /\.styl$/m
   exts: ['.styl']
 
-  compile:( filepath, source, done )->
+  compile:( filepath, source, debug, done )->
     stylus( source )
     .set( 'filename', filepath )
     .use( nib() )

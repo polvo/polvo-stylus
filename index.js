@@ -22,7 +22,7 @@ module.exports = new (Index = (function() {
 
   Index.prototype.exts = ['.styl'];
 
-  Index.prototype.compile = function(filepath, source, done) {
+  Index.prototype.compile = function(filepath, source, debug, done) {
     return stylus(source).set('filename', filepath).use(nib()).render(function(err, css) {
       if (err != null) {
         throw err;
