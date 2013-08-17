@@ -32,12 +32,13 @@ module.exports = new (Index = (function() {
     return /^_/m.test(path.basename(filepath));
   };
 
-  Index.prototype.compile = function(filepath, source, debug, done) {
+  Index.prototype.compile = function(filepath, source, debug, error, done) {
     return stylus(source).set('filename', filepath).use(nib()).render(function(err, css) {
       if (err != null) {
-        throw err;
+        return error(err);
+      } else {
+        return done(css, null);
       }
-      return done(css, null);
     });
   };
 

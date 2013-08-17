@@ -20,13 +20,15 @@ module.exports = new class Index
   partials: on
   is_partial:(filepath)-> /^_/m.test path.basename filepath
 
-  compile:( filepath, source, debug, done )->
+  compile:( filepath, source, debug, error, done )->
     stylus( source )
     .set( 'filename', filepath )
     .use( nib() )
     .render (err, css)->
-      throw err if err?
-      done css, null
+      if err?
+        error err
+      else
+        done css, null
 
   resolve_dependents:(file, files)->
     dependents = []
