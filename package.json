@@ -1,6 +1,6 @@
 {
   "name": "polvo-stylus",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Anderson Arboleya <anderson@arboleya.me>",
   "description": "Stylus plugin for Polvo",
   "keywords": [
@@ -18,10 +18,11 @@
   },
   "dependencies": {
     "source-map-support": "0.2.x",
-    "stylus": "0.36.x",
+    "stylus": "0.37.x",
     "nib": "1.0.x"
   },
   "devDependencies": {
-    "coffee-script": "1.6.x"
+    "coffee-script": "1.6.x",
+    "mversion": "~0.2.0"
   }
 }
