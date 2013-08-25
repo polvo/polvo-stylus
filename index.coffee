@@ -8,8 +8,6 @@ nib = require 'nib'
 
 module.exports = new class Index
 
-  polvo: true
-
   type: 'style'
   name: 'stylus'
   output: 'css'

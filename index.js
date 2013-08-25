@@ -14,8 +14,6 @@ nib = require('nib');
 module.exports = new (Index = (function() {
   function Index() {}
 
-  Index.prototype.polvo = true;
-
   Index.prototype.type = 'style';
 
   Index.prototype.name = 'stylus';
