@@ -5,6 +5,7 @@ path = require 'path'
 
 stylus = require 'stylus'
 nib = require 'nib'
+clone = require 'regexp-clone'
 
 module.exports = new class Index
 
@@ -16,41 +17,46 @@ module.exports = new class Index
   exts: ['.styl']
 
   partials: on
-  is_partial:(filepath)-> /^_/m.test path.basename filepath
+
+  has_import = /^\s*(?!\/\/)@import\s/m
+  match_all = /^\s*(?:(?!\/\/).?)@import\s+(?:"|')(\S+)(?:"|')/mg
+
+  is_partial:( filepath )->
+    /^_/m.test path.basename filepath
 
   compile:( filepath, source, debug, error, done )->
     stylus( source )
     .set( 'filename', filepath )
     .use( nib() )
+    .import( 'nib' )
+    .set('linenos', debug is true)
     .render (err, css)->
       if err?
         error err
+        done ''
       else
-        done css, null
+        done css
 
-  resolve_dependents:(file, files)->
+  resolve_dependents:( filepath, files )->
     dependents = []
-    has_import_calls = /^\s*(?!\/\/)@import\s/m
 
     for each in files
-
-      continue if not has_import_calls.test each.raw
+      [has, all] = [clone(has_import), clone(match_all)]
+      continue if not has.test each.raw
 
       dirpath = path.dirname each.filepath
       name = path.basename each.filepath
-      match_all = /^\s*(?!\/\/)@import\s+(?:"|')(\S+)(?:"|')/mg
       
-      while (match = match_all.exec each.raw)?
+      while (match = all.exec each.raw)?
+        impor7 = match[1]
+        impor7 = impor7.replace(@ext, '') + '.styl'
+        impor7 = path.join dirpath, impor7
 
-        short_id = match[1]
-        short_id += '.styl' if '' is path.extname short_id
-
-        full_id = path.join dirpath, short_id
-
-        if full_id is file.filepath
+        if impor7 is filepath
           if not @is_partial name
             dependents.push each
           else
-            dependents = dependents.concat @resolve_dependents each, files
+            sub = @resolve_dependents each.filepath, files
+            dependents = dependents.concat sub
 
     dependents

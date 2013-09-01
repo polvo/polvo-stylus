@@ -4,6 +4,8 @@ With this plugin, Polvo can handle Stylus source files.
 
 [![Stories in Ready](https://badge.waffle.io/polvo/polvo-stylus.png)](https://waffle.io/polvo/polvo-stylus)
 
+[![Build Status](https://secure.travis-ci.org/polvo/polvo-stylus.png)](http://travis-ci.org/polvo/polvo-stylus) [![Coverage Status](https://coveralls.io/repos/polvo/polvo-stylus/badge.png)](https://coveralls.io/r/polvo/polvo-stylus)
+
 [![Dependency Status](https://gemnasium.com/polvo/polvo-stylus.png)](https://gemnasium.com/polvo/polvo-stylus) [![NPM version](https://badge.fury.io/js/polvo-stylus.png)](http://badge.fury.io/js/polvo-stylus)
 
 # Install
