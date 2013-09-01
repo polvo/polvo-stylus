@@ -29,10 +29,14 @@ The import tag follows the Stylus include's default syntax.
 To include a partial in your `stylus`, just:
 
  1. Name your patial accordingly so it starts with `_`
- 1. Include it in any of your html files by using the syntax
+ 1. Include it in any of your `styl` files by using the syntax
 
- ````html
+ ````css
  @import "./path/to/your/_partial-name-here"
  ````
 
  Partials are referenced relatively.
+
+ # Nib
+
+ Nib is play be default, don';'t need to import it in order to use.
